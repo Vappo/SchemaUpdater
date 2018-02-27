@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaUpdater", "src\SchemaUpdater\SchemaUpdater.csproj", "{9D7D0083-C34C-432E-B497-49D6DF810158}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaUpdater.Test", "src\SchemaUpdater.Test\SchemaUpdater.Test.csproj", "{D85658D6-453B-47F3-BFDB-FA91651328E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9D7D0083-C34C-432E-B497-49D6DF810158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D7D0083-C34C-432E-B497-49D6DF810158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D7D0083-C34C-432E-B497-49D6DF810158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85658D6-453B-47F3-BFDB-FA91651328E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85658D6-453B-47F3-BFDB-FA91651328E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85658D6-453B-47F3-BFDB-FA91651328E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85658D6-453B-47F3-BFDB-FA91651328E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
