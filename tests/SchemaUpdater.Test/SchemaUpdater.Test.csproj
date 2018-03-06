@@ -45,18 +45,18 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\DbTypeMapFactoryTest.cs" />
+    <Compile Include="Updates\AddColumn\AddColumnUpdateFactoryTest.cs" />
+    <Compile Include="Updates\NewTable\NewTableUpdateFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SchemaUpdater\SchemaUpdater.csproj">
+    <ProjectReference Include="..\..\src\SchemaUpdater\SchemaUpdater.csproj">
       <Project>{9d7d0083-c34c-432e-b497-49d6df810158}</Project>
       <Name>SchemaUpdater</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Updates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

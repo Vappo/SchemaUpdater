@@ -7,7 +7,7 @@
         MySQL,
         Oracle,
         Odbc,
-        SQLLite,
+        SQLite,
         SQLCE
     }
 }

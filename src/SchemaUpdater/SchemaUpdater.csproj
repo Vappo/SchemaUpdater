@@ -49,12 +49,19 @@
     <Compile Include="DatabaseVersion.cs" />
     <Compile Include="IUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\SQLiteDbTypeMap.cs" />
     <Compile Include="UpdateList.cs" />
-    <Compile Include="Updates\AddFieldUpdate.cs" />
+    <Compile Include="Updates\AddColumn\AddColumnUpdate.cs" />
+    <Compile Include="Updates\AddColumn\AddColumnUpdateFactory.cs" />
+    <Compile Include="Updates\AddColumn\SQLAddColumnUpdate.cs" />
+    <Compile Include="Updates\AddColumn\SQLiteAddColumnUpdate.cs" />
     <Compile Include="Updates\BaseTableUpdate.cs" />
     <Compile Include="Types\DbTypeMapFactory.cs" />
     <Compile Include="Types\IDbTypeMap.cs" />
-    <Compile Include="Types\SqlDbTypeMap.cs" />
+    <Compile Include="Types\SQLDbTypeMap.cs" />
+    <Compile Include="Updates\NewTable\NewTableUpdate.cs" />
+    <Compile Include="Updates\NewTable\NewTableUpdateFactory.cs" />
+    <Compile Include="Updates\NewTable\SQLNewTableUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

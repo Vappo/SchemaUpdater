@@ -7,7 +7,7 @@
             ColumnName = columnName;
         }
 
-        public string ColumnName { get; private set; }
+        public string ColumnName { get; }
 
         public string Type { get; set; }
 

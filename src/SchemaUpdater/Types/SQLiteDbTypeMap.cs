@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace SchemaUpdater.Types
 {
-    public class SQLDbTypeMap : IDbTypeMap
+    public class SQLiteDbTypeMap : IDbTypeMap
     {
         private readonly static Dictionary<Type, string> StaticDbTypeMap = new Dictionary<Type, string>()
         {
@@ -16,7 +16,7 @@ namespace SchemaUpdater.Types
             [typeof(double)] = "double",
             [typeof(string)] = "varchar",
             [typeof(char)] = "char",
-            [typeof(byte[])] = "varbinary",
+            [typeof(byte[])] = "blob",
             [typeof(DateTime)] = "datetime"
         };
 

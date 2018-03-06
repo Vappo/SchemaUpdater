@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using SchemaUpdater.Types;
+using System.Data;
 
-namespace SchemaUpdater.Updates
+namespace SchemaUpdater.Updates.AddColumn
 {
-    public abstract class AddFieldUpdate : BaseTableUpdate
+    public abstract class AddColumnUpdate : BaseTableUpdate
     {
         private List<Column> _columns = new List<Column>();
 
-        public AddFieldUpdate(string tableName, Database database) : base(tableName, database)
+        public AddColumnUpdate(string tableName, Database database) : base(tableName, database)
         {
         }
 
@@ -48,14 +48,29 @@ namespace SchemaUpdater.Updates
                 throw new ArgumentNullException(nameof(column));
             }
 
+            CheckIfUpdateIsAlreadyLocked();
+
             _columns.Add(column);
         }
 
-        private string GetDbTypeFromFrameworkType<T>()
+        public override void Update(IDbConnection connection, IDbTransaction transaction)
         {
-            IDbTypeMap map = DbTypeMapFactory.CreateDbTypeMap(Database.Provider);
-            Type type = typeof(T);
-            return map.DbTypeMap[type];
+            foreach (var column in _columns)
+            {
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.Transaction = transaction;
+                    command.CommandTimeout = CommandTimeout;
+                    command.CommandText = CreateCommandTextForColumn(column);
+
+                    if (!string.IsNullOrWhiteSpace(command.CommandText))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
+
+        protected abstract string CreateCommandTextForColumn(Column column);
     }
 }

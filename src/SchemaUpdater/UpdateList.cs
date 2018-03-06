@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SchemaUpdater.Updates.AddColumn;
 
 namespace SchemaUpdater
 {
@@ -23,6 +24,12 @@ namespace SchemaUpdater
 
             update.Lock();
             _updates.Add(update);
+        }
+
+        public void AddColumn(string tableName, Database database)
+        {
+            AddColumnUpdate addColumnUpdate = AddColumnUpdateFactory.CreateAddColumnUpdate(tableName, database);
+            Add(addColumnUpdate);
         }
 
         private void CheckIfUpdateIsAlreadyAdded(IUpdate update)

@@ -5,7 +5,7 @@ namespace SchemaUpdater
     public interface IUpdate
     {
         int CommandTimeout { get; set; }
-        
+
         Database Database { get; }
 
         bool IsLocked { get; }
