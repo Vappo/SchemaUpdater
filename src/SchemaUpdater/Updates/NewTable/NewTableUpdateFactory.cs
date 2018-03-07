@@ -9,6 +9,7 @@ namespace SchemaUpdater.Updates.NewTable
             switch (database.Provider)
             {
                 case DatabaseProvider.MSSQL: return new SQLNewTableUpdate(tableName, database);
+                case DatabaseProvider.SQLite: return new SQLiteNewTableUpdate(tableName, database);
             }
 
             throw new ArgumentException("The given provider is not supported.");

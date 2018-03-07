@@ -8,7 +8,7 @@ namespace SchemaUpdater.Updates.NewTable
     public abstract class NewTableUpdate : BaseTableUpdate
     {
         private List<Column> _columns = new List<Column>();
-        private List<string> _primaryKeyColumns = new List<string>();
+        private PrimaryKey _primaryKey;
 
         public NewTableUpdate(string tableName, Database database) : base(tableName, database)
         {
@@ -19,9 +19,9 @@ namespace SchemaUpdater.Updates.NewTable
             get { return _columns; }
         }
 
-        protected List<string> PrimaryKeyColumns
+        protected PrimaryKey PrimaryKey
         {
-            get { return _primaryKeyColumns; }
+            get { return _primaryKey; }
         }
 
         public virtual void AddColumn<T>(
@@ -65,16 +65,27 @@ namespace SchemaUpdater.Updates.NewTable
             _columns.Add(column);
         }
 
-        public void AddPrimaryKey(params string[] primaryKey)
+        public void AddPrimaryKey(params string[] primaryKeyColumns)
         {
-            if (primaryKey == null || primaryKey.Length == 0)
+            if (primaryKeyColumns == null || primaryKeyColumns.Length == 0)
+            {
+                throw new ArgumentNullException(nameof(primaryKeyColumns));
+            }
+
+            var primaryKey = new PrimaryKey(primaryKeyColumns);
+            AddPrimaryKey(primaryKey);
+        }
+
+        public void AddPrimaryKey(PrimaryKey primaryKey)
+        {
+            if (primaryKey == null)
             {
                 throw new ArgumentNullException(nameof(primaryKey));
             }
 
             CheckIfUpdateIsAlreadyLocked();
 
-            _primaryKeyColumns = primaryKey.ToList();
+            _primaryKey = primaryKey;
         }
 
         public override void Update(IDbConnection connection, IDbTransaction transaction)
@@ -105,7 +116,7 @@ namespace SchemaUpdater.Updates.NewTable
 
         private void CheckIfPrimaryKeyIsAdded()
         {
-            if (_primaryKeyColumns == null || !_primaryKeyColumns.Any())
+            if (_primaryKey == null)
             {
                 throw new InvalidOperationException("Primary Key is missing.");
             }

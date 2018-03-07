@@ -2,19 +2,18 @@
 
 namespace SchemaUpdater.Updates.NewTable
 {
-    public class SQLNewTableUpdate : NewTableUpdate
+    public class SQLiteNewTableUpdate : NewTableUpdate
     {
         private StringBuilder _commandBuilder = new StringBuilder();
 
-        public SQLNewTableUpdate(string tableName, Database database) : base(tableName, database)
+        public SQLiteNewTableUpdate(string tableName, Database database) : base(tableName, database)
         {
         }
 
         protected override string CreateCommandText()
         {
             _commandBuilder.Clear();
-
-            AddTableExistsCheckToBuilder();
+            
             AddCreateTableCommandToBuilder();
             AddTableColumnsToBuilder();
             AddPrimaryKeyToBuilder();
@@ -23,15 +22,10 @@ namespace SchemaUpdater.Updates.NewTable
 
             return _commandBuilder.ToString();
         }
-
-        private void AddTableExistsCheckToBuilder()
-        {
-            _commandBuilder.Append($" IF NOT EXISTS (SELECT * FROM sysobjects WHERE Name='{TableName}' and Xtype='U') ");
-        }
-
+        
         private void AddCreateTableCommandToBuilder()
         {
-            _commandBuilder.Append($" CREATE TABLE {TableName} ( ");
+            _commandBuilder.Append($" CREATE TABLE IF NOT EXISTS {TableName} ( ");
         }
 
         private void AddTableColumnsToBuilder()
@@ -79,8 +73,7 @@ namespace SchemaUpdater.Updates.NewTable
         private void AddPrimaryKeyToBuilder()
         {
             string joinedColumns = string.Join(",", PrimaryKey.Columns);
-            string clustered = PrimaryKey.Clustered ? "CLUSTERED" : "NONCLUSTERED";
-            string primaryKey = $" PRIMARY KEY {clustered} ({joinedColumns}) ";
+            string primaryKey = $" PRIMARY KEY ({joinedColumns}) ";
 
             if (!string.IsNullOrWhiteSpace(PrimaryKey.Name))
             {
