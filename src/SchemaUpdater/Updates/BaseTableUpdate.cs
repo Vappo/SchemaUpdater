@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using SchemaUpdater.Exceptions;
 using SchemaUpdater.Types;
 
 namespace SchemaUpdater.Updates
@@ -47,7 +48,7 @@ namespace SchemaUpdater.Updates
         {
             if (IsLocked)
             {
-                throw new InvalidOperationException("The given update is already locked. You can't add additional changes.");
+                throw new SchemaUpdaterException(ErrorCodes.UpdateIsAlreadyLocked);
             }
         }
 

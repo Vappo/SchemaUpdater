@@ -1,5 +1,5 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SchemaUpdater.Exceptions;
 using SchemaUpdater.Updates.NewTable;
 
 namespace SchemaUpdater.Test.Updates
@@ -22,7 +22,7 @@ namespace SchemaUpdater.Test.Updates
         {
             var database = new Database("connectionString", "System.Data.None");
 
-            Assert.Throws(typeof(ArgumentException), () =>
+            Assert.Throws(typeof(SchemaUpdaterException), () =>
             {
                 NewTableUpdateFactory.CreateNewTableUpdate("Table", database);
             });

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SchemaUpdater.Exceptions;
 
 namespace SchemaUpdater.Updates.AddColumn
 {
@@ -12,7 +12,7 @@ namespace SchemaUpdater.Updates.AddColumn
                 case DatabaseProvider.SQLite: return new SQLiteAddColumnUpdate(tableName, database);
             }
 
-            throw new ArgumentException("The given provider is not supported.");
+            throw new SchemaUpdaterException(ErrorCodes.ProviderNotSupported);
         }
     }
 }

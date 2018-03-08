@@ -1,30 +1,30 @@
 ﻿using NUnit.Framework;
 using SchemaUpdater.Exceptions;
-using SchemaUpdater.Updates.AddColumn;
+using SchemaUpdater.Updates.CreateDatabase;
 
 namespace SchemaUpdater.Test.Updates
 {
     [TestFixture]
-    public class AddColumnUpdateFactoryTest
+    public class CreateDatabaseUpdateFactoryTest
     {
         [Test]
-        public void TestCreateAddColumnUpdate()
+        public void TestCreateDatabaseUpdate()
         {
             var database = new Database("connectionString", "System.Data.SqlClient");
 
-            AddColumnUpdate update = AddColumnUpdateFactory.CreateAddColumnUpdate("Table", database);
+            CreateDatabaseUpdate update = CreateDatabaseUpdateFactory.CreateDatabaseUpdate(database);
 
             Assert.IsNotNull(update);
         }
 
         [Test]
-        public void TestCreateAddColumnUpdateWithUnknownProvider()
+        public void TestCreateDatabaseUpdateWithUnknownProvider()
         {
             var database = new Database("connectionString", "System.Data.None");
 
             Assert.Throws(typeof(SchemaUpdaterException), () =>
             {
-                AddColumnUpdateFactory.CreateAddColumnUpdate("Table", database);
+                CreateDatabaseUpdateFactory.CreateDatabaseUpdate(database);
             });
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SchemaUpdater.Exceptions;
 using SchemaUpdater.Updates.AddColumn;
 
 namespace SchemaUpdater
@@ -36,7 +37,7 @@ namespace SchemaUpdater
         {
             if (_updates.Contains(update))
             {
-                throw new InvalidOperationException("The given update is already added.");
+                throw new SchemaUpdaterException(ErrorCodes.UpdateIsAlreadyAdded);
             }
         }
     }

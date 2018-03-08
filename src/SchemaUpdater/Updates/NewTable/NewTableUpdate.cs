@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using SchemaUpdater.Exceptions;
 
 namespace SchemaUpdater.Updates.NewTable
 {
@@ -110,7 +111,7 @@ namespace SchemaUpdater.Updates.NewTable
         {
             if (_columns == null || !_columns.Any())
             {
-                throw new InvalidOperationException("No columns are added to the table.");
+                throw new SchemaUpdaterException(ErrorCodes.NotColumnsAddedToUpdate);
             }
         }
 
@@ -118,7 +119,7 @@ namespace SchemaUpdater.Updates.NewTable
         {
             if (_primaryKey == null)
             {
-                throw new InvalidOperationException("Primary Key is missing.");
+                throw new SchemaUpdaterException(ErrorCodes.PrimaryKeyIsMissing);
             }
         }
 

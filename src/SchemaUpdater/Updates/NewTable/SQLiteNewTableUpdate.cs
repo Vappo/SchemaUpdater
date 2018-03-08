@@ -13,7 +13,7 @@ namespace SchemaUpdater.Updates.NewTable
         protected override string CreateCommandText()
         {
             _commandBuilder.Clear();
-            
+
             AddCreateTableCommandToBuilder();
             AddTableColumnsToBuilder();
             AddPrimaryKeyToBuilder();
@@ -22,7 +22,7 @@ namespace SchemaUpdater.Updates.NewTable
 
             return _commandBuilder.ToString();
         }
-        
+
         private void AddCreateTableCommandToBuilder()
         {
             _commandBuilder.Append($" CREATE TABLE IF NOT EXISTS {TableName} ( ");

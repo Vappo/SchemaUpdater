@@ -1,5 +1,5 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SchemaUpdater.Exceptions;
 using SchemaUpdater.Types;
 
 namespace SchemaUpdater.Test.Types
@@ -21,8 +21,8 @@ namespace SchemaUpdater.Test.Types
         public void TestCreateDbTypeMapWithUnknownProvider()
         {
             var provider = DatabaseProvider.None;
-            
-            Assert.Throws(typeof(ArgumentException), () =>
+
+            Assert.Throws(typeof(SchemaUpdaterException), () =>
             {
                 DbTypeMapFactory.CreateDbTypeMap(provider);
             });

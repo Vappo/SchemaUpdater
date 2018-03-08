@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SchemaUpdater.Exceptions;
 
 namespace SchemaUpdater.Types
 {
@@ -12,7 +12,7 @@ namespace SchemaUpdater.Types
                 case DatabaseProvider.SQLite: return new SQLiteDbTypeMap();
             }
 
-            throw new ArgumentException("The given provider is not supported.");
+            throw new SchemaUpdaterException(ErrorCodes.ProviderNotSupported);
         }
     }
 }
